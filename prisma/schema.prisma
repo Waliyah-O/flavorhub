@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  recipes       Recipe[]
+  mealPlans     MealPlan[]
+  shoppingLists ShoppingList[]
+  preferences   UserPreferences?
+}
+
+model Recipe {
+  id            String         @id @default(cuid())
+  title         String
+  description   String
+  ingredients   Json
+  instructions  String[]
+  prepTime      Int
+  cookTime      Int
+  servings      Int
+  difficulty    String
+  cuisine       String
+  imageUrl      String?
+  videoUrl      String?
+  nutritional   NutritionalInfo?
+  calories      Int?
+  protein       Float?
+  carbs         Float?
+  fat           Float?
+  fiber         Float?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  tags          RecipeTag[]
+  favorites     Favorite[]
+  mealPlanItems MealPlanItem[]
+  reviews       Review[]
+}
+
+model NutritionalInfo {
+  id            String  @id @default(cuid())
+  recipeId      String  @unique
+  recipe        Recipe  @relation(fields: [recipeId], references: [id])
+  servingSize   String
+  calories      Int
+  totalFat      Float
+  saturatedFat  Float
+  cholesterol   Float
+  sodium        Float
+  totalCarbs    Float
+  dietaryFiber  Float
+  sugars        Float
+  protein       Float
+  vitamins      Json?
+  minerals      Json?
+}
+
+model Tag {
+  id       String      @id @default(cuid())
+  name     String      @unique
+  recipes  RecipeTag[]
+}
+
+model RecipeTag {
+  recipeId String
+  tagId    String
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  tag      Tag    @relation(fields: [tagId], references: [id])
+  @@id([recipeId, tagId])
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  recipeId  String
+  user      User     @relation(fields: [userId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  createdAt DateTime @default(now())
+  @@unique([userId, recipeId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String?
+  userId    String
+  recipeId  String
+  user      User     @relation(fields: [userId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model MealPlan {
+  id        String         @id @default(cuid())
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  userId    String
+  user      User           @relation(fields: [userId], references: [id])
+  items     MealPlanItem[]
+  createdAt DateTime       @default(now())
+}
+
+model MealPlanItem {
+  id         String    @id @default(cuid())
+  dayOfWeek  Int
+  mealType   String    // breakfast, lunch, dinner, snack
+  recipeId   String
+  recipe     Recipe    @relation(fields: [recipeId], references: [id])
+  mealPlanId String
+  mealPlan   MealPlan  @relation(fields: [mealPlanId], references: [id])
+  servings   Int       @default(1)
+  notes      String?
+}
+
+model ShoppingList {
+  id        String            @id @default(cuid())
+  name      String
+  userId    String
+  user      User              @relation(fields: [userId], references: [id])
+  items     ShoppingListItem[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+model ShoppingListItem {
+  id             String       @id @default(cuid())
+  name           String
+  quantity       Float
+  unit           String
+  category       String?
+  isPurchased    Boolean      @default(false)
+  shoppingListId String
+  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id])
+}
+
+model UserPreferences {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  dietaryRestrictions String[]
+  allergies       String[]
+  dislikedFoods   String[]
+  calorieGoal     Int?
+  proteinGoal     Float?
+  carbsGoal       Float?
+  fatGoal         Float?
+  servingsPerDay  Int      @default(3)
+}
