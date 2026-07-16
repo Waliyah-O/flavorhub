@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import "./print.css"; //
 import {
   Clock,
   Users,
@@ -39,6 +40,8 @@ import {
   Info,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PrintRecipe } from "../print-recipe";
+import { sampleRecipe, sampleRecipeDetails } from "@/lib/data";
 
 // Types
 interface Ingredient {
@@ -81,7 +84,7 @@ interface Review {
   helpful: number;
 }
 
-interface RecipeDetail {
+export interface RecipeDetail {
   id: string;
   title: string;
   description: string;
@@ -124,264 +127,6 @@ interface RecipeDetail {
 }
 
 // Sample recipe data
-const sampleRecipe: RecipeDetail = {
-  id: "1",
-  title: "Mediterranean Grilled Salmon with Herb Crust",
-  description:
-    "Fresh Atlantic salmon fillet coated with a fragrant herb crust, grilled to perfection. Served with a light lemon butter sauce and roasted Mediterranean vegetables. This restaurant-quality dish is surprisingly easy to make at home and perfect for both weeknight dinners and special occasions.",
-  imageUrl: "/api/placeholder/800/400",
-  videoUrl: "https://example.com/video",
-  prepTime: 15,
-  cookTime: 20,
-  totalTime: 35,
-  servings: 4,
-  difficulty: "Medium",
-  cuisine: "Mediterranean",
-  author: {
-    name: "Chef Maria Rodriguez",
-    avatar: "/api/placeholder/100/100",
-    bio: "Professional chef with 15 years of experience in Mediterranean cuisine. Passionate about making gourmet cooking accessible to everyone.",
-  },
-  rating: 4.8,
-  reviewCount: 234,
-  ingredients: [
-    {
-      name: "Salmon fillets",
-      amount: 4,
-      unit: "pieces",
-      notes: "6 oz each, skin-on",
-    },
-    {
-      name: "Fresh parsley",
-      amount: 1 / 4,
-      unit: "cup",
-      notes: "finely chopped",
-    },
-    { name: "Fresh dill", amount: 2, unit: "tablespoons", notes: "chopped" },
-    {
-      name: "Fresh thyme",
-      amount: 1,
-      unit: "tablespoon",
-      notes: "leaves only",
-    },
-    { name: "Garlic cloves", amount: 4, unit: "pieces", notes: "minced" },
-    {
-      name: "Lemon",
-      amount: 2,
-      unit: "pieces",
-      notes: "1 for zest and juice, 1 for serving",
-    },
-    {
-      name: "Olive oil",
-      amount: 3,
-      unit: "tablespoons",
-      notes: "extra virgin",
-    },
-    { name: "Dijon mustard", amount: 1, unit: "tablespoon" },
-    { name: "Salt", amount: 1, unit: "teaspoon", notes: "or to taste" },
-    {
-      name: "Black pepper",
-      amount: 1 / 2,
-      unit: "teaspoon",
-      notes: "freshly ground",
-    },
-    { name: "Cherry tomatoes", amount: 2, unit: "cups", notes: "halved" },
-    { name: "Zucchini", amount: 2, unit: "pieces", notes: "sliced" },
-    { name: "Red bell pepper", amount: 1, unit: "piece", notes: "sliced" },
-    { name: "Red onion", amount: 1, unit: "piece", notes: "cut into wedges" },
-    { name: "Butter", amount: 2, unit: "tablespoons", notes: "unsalted" },
-  ],
-  instructions: [
-    {
-      step: 1,
-      description:
-        "Preheat your grill or grill pan to medium-high heat (about 400°F/200°C).",
-      duration: 5,
-      temperature: 400,
-    },
-    {
-      step: 2,
-      description:
-        "In a small bowl, mix together the chopped parsley, dill, thyme, minced garlic, lemon zest, olive oil, Dijon mustard, salt, and pepper to create the herb crust paste.",
-      duration: 5,
-    },
-    {
-      step: 3,
-      description:
-        "Pat the salmon fillets dry with paper towels. Spread the herb mixture evenly over the top of each fillet, pressing gently to adhere.",
-      duration: 3,
-    },
-    {
-      step: 4,
-      description:
-        "Toss the cherry tomatoes, zucchini, bell pepper, and red onion with 1 tablespoon olive oil, salt, and pepper.",
-      duration: 3,
-    },
-    {
-      step: 5,
-      description:
-        "Place the vegetables in a grill basket or on a piece of aluminum foil on the grill. Cook for 8-10 minutes, stirring occasionally, until tender and lightly charred.",
-      duration: 10,
-      tip: "If using wooden skewers for vegetables, soak them in water for 30 minutes before grilling to prevent burning.",
-    },
-    {
-      step: 6,
-      description:
-        "Place the salmon fillets on the grill, herb-side up. Close the lid and cook for 6-8 minutes, or until the fish is just cooked through and flakes easily with a fork. Do not flip the salmon.",
-      duration: 8,
-      tip: "The internal temperature should reach 145°F (63°C) for perfectly cooked salmon.",
-    },
-    {
-      step: 7,
-      description:
-        "While the salmon cooks, melt the butter in a small saucepan. Add the lemon juice and stir to combine.",
-      duration: 2,
-    },
-    {
-      step: 8,
-      description:
-        "Remove salmon and vegetables from the grill. Drizzle the lemon butter sauce over the salmon. Serve immediately with lemon wedges on the side.",
-      duration: 2,
-    },
-  ],
-  nutritionalInfo: {
-    calories: 450,
-    protein: 35,
-    carbs: 12,
-    fat: 28,
-    fiber: 3,
-    sugar: 4,
-    sodium: 580,
-    cholesterol: 95,
-    saturatedFat: 8,
-    vitamins: [
-      { name: "Vitamin A", amount: "15", unit: "% DV" },
-      { name: "Vitamin C", amount: "45", unit: "% DV" },
-      { name: "Vitamin D", amount: "80", unit: "% DV" },
-      { name: "Vitamin B12", amount: "120", unit: "% DV" },
-    ],
-    minerals: [
-      { name: "Iron", amount: "10", unit: "% DV" },
-      { name: "Calcium", amount: "6", unit: "% DV" },
-      { name: "Potassium", amount: "20", unit: "% DV" },
-      { name: "Magnesium", amount: "15", unit: "% DV" },
-    ],
-  },
-  tags: [
-    { id: "1", name: "Healthy" },
-    { id: "2", name: "High Protein" },
-    { id: "3", name: "Gluten-Free" },
-    { id: "4", name: "Keto-Friendly" },
-    { id: "5", name: "Mediterranean" },
-    { id: "6", name: "Seafood" },
-  ],
-  equipment: [
-    "Grill or grill pan",
-    "Grill basket or aluminum foil",
-    "Small mixing bowl",
-    "Measuring spoons",
-    "Chef's knife",
-    "Cutting board",
-    "Small saucepan",
-    "Paper towels",
-  ],
-  tips: [
-    "For best results, bring salmon to room temperature 15-20 minutes before cooking.",
-    "Don't overcook the salmon - it will continue cooking from residual heat after removing from grill.",
-    "Fresh herbs make a big difference in this recipe. Dried herbs can be substituted but use half the amount.",
-    "This recipe works great with other fish like halibut, sea bass, or trout.",
-  ],
-  reviews: [
-    {
-      id: "1",
-      userId: "1",
-      userName: "Sarah Johnson",
-      userAvatar: "/api/placeholder/50/50",
-      rating: 5,
-      comment:
-        "This recipe is absolutely amazing! The herb crust gives so much flavor. I've made it three times already and my family loves it. The tips about not overcooking were really helpful.",
-      date: "2024-01-15",
-      helpful: 42,
-    },
-    {
-      id: "2",
-      userId: "2",
-      userName: "Mike Chen",
-      userAvatar: "/api/placeholder/50/50",
-      rating: 5,
-      comment:
-        "Restaurant quality at home! The lemon butter sauce is divine. I added some capers for extra flavor. Will definitely make this again.",
-      date: "2024-01-10",
-      helpful: 28,
-    },
-    {
-      id: "3",
-      userId: "3",
-      userName: "Emily Brown",
-      userAvatar: "/api/placeholder/50/50",
-      rating: 4,
-      comment:
-        "Really good recipe! I used dried herbs since I didn't have fresh ones and it still turned out great. Next time I'll make sure to use fresh herbs as recommended.",
-      date: "2024-01-08",
-      helpful: 15,
-    },
-  ],
-  relatedRecipes: [
-    {
-      id: "2",
-      title: "Lemon Herb Grilled Chicken",
-      description:
-        "Juicy grilled chicken breasts marinated in lemon and herbs.",
-      imageUrl: "/api/placeholder/400/300",
-      prepTime: 15,
-      cookTime: 20,
-      servings: 4,
-      difficulty: "Easy",
-      cuisine: "Mediterranean",
-      calories: 380,
-      rating: 4.6,
-      tags: [
-        { id: "1", name: "Healthy" },
-        { id: "2", name: "High Protein" },
-      ],
-    },
-    {
-      id: "3",
-      title: "Garlic Butter Shrimp Skewers",
-      description: "Succulent shrimp with garlic butter and fresh herbs.",
-      imageUrl: "/api/placeholder/400/300",
-      prepTime: 20,
-      cookTime: 10,
-      servings: 4,
-      difficulty: "Easy",
-      cuisine: "Mediterranean",
-      calories: 320,
-      rating: 4.7,
-      tags: [
-        { id: "1", name: "Seafood" },
-        { id: "2", name: "Quick" },
-      ],
-    },
-    {
-      id: "4",
-      title: "Mediterranean Vegetable Pasta",
-      description:
-        "Fresh pasta with roasted Mediterranean vegetables and feta.",
-      imageUrl: "/api/placeholder/400/300",
-      prepTime: 10,
-      cookTime: 25,
-      servings: 6,
-      difficulty: "Easy",
-      cuisine: "Mediterranean",
-      calories: 420,
-      rating: 4.5,
-      tags: [
-        { id: "1", name: "Vegetarian" },
-        { id: "2", name: "Pasta" },
-      ],
-    },
-  ],
-};
 
 export default function RecipeDetailPage() {
   const params = useParams();
@@ -405,15 +150,213 @@ export default function RecipeDetailPage() {
     // }
     // fetchRecipe()
 
-    // Using sample data for now
     setTimeout(() => {
-      setRecipe(sampleRecipe);
-      setServings(sampleRecipe.servings);
+      const foundRecipe = sampleRecipeDetails.find((r) => r.id === params.id);
+
+      if (foundRecipe) {
+        setRecipe(foundRecipe);
+        setServings(foundRecipe.servings);
+      } else {
+        // Handle case where recipe is not found
+        console.error(`Recipe with id ${params.id} not found`);
+        //  redirect to 404
+      }
+
       setLoading(false);
     }, 500);
   }, [params.id]);
 
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleSaveAsPDF = async () => {
+    // Create a new window for printing to PDF
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    // Get the print content
+    const printContent = document.querySelector(".print-recipe");
+    if (!printContent) return;
+
+    // Write print-friendly HTML
+    printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>${recipe?.title || "Recipe"} - FlavorHub</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+
+          h1 {
+            font-size: 28pt;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            text-align: center;
+          }
+
+          h2 {
+            font-size: 18pt;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #ec4899;
+            padding-bottom: 5px;
+          }
+
+          .meta-info {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin: 20px 0;
+          }
+
+          .meta-item {
+            text-align: center;
+          }
+
+          .meta-value {
+            font-weight: bold;
+            font-size: 14pt;
+          }
+
+          .meta-label {
+            color: #666;
+            font-size: 10pt;
+          }
+
+          .ingredients-list {
+            columns: 2;
+            column-gap: 40px;
+            list-style: none;
+            padding: 0;
+          }
+
+          .ingredients-list li {
+            break-inside: avoid;
+            padding: 4px 0;
+            border-bottom: 1px dotted #e5e5e5;
+          }
+
+          .instructions-list {
+            list-style: none;
+            padding: 0;
+          }
+
+          .instructions-list li {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+          }
+
+          .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: #ec4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+          }
+
+          .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+          }
+
+          .nutrition-item {
+            text-align: center;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+          }
+
+          .nutrition-value {
+            font-size: 16pt;
+            font-weight: bold;
+          }
+
+          .nutrition-label {
+            font-size: 9pt;
+            color: #666;
+          }
+
+          .tip-box {
+            margin-top: 8px;
+            padding: 8px;
+            background: #eff6ff;
+            border-radius: 4px;
+            font-size: 10pt;
+            color: #1e40af;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+          }
+
+          th, td {
+            padding: 5px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+          }
+
+          th {
+            border-bottom: 2px solid #e5e5e5;
+          }
+
+          .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            font-size: 9pt;
+            color: #999;
+          }
+
+          @media print {
+            @page {
+              margin: 2cm;
+              size: A4;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        ${printContent.innerHTML}
+      </body>
+    </html>
+  `);
+
+    printWindow.document.close();
+
+    // Wait for content to load then print
+    printWindow.onload = () => {
+      printWindow.print();
+      // printWindow.close() // Uncomment to auto-close after print dialog
+    };
+  };
+
   // Calculate ingredient quantities based on servings
+
   const calculateAmount = (
     originalAmount: number,
     originalServings: number,
@@ -482,6 +425,7 @@ export default function RecipeDetailPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <PrintRecipe recipe={recipe} servings={servings} />
       {/* Back Button */}
       <div className="container mx-auto px-4 py-4">
         <Link
@@ -615,9 +559,18 @@ export default function RecipeDetailPage() {
                 <Calendar className="mr-2 h-4 w-4" />
                 Add to Meal Plan
               </Button>
-              <Button variant="outline" size="icon">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleSaveAsPDF}
+                title="Print / Save as PDF"
+              >
                 <Printer className="h-4 w-4" />
               </Button>
+
+              {/* <Button variant="outline" size="icon">
+                <Printer className="h-4 w-4" />
+              </Button> */}
               <Button variant="outline" size="icon">
                 <Share2 className="h-4 w-4" />
               </Button>

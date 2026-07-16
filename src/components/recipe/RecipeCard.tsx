@@ -80,7 +80,7 @@ export function RecipeCard({
           {/* Overlay on hover */}
           <div
             className={cn(
-              "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-300",
+              "absolute inset-0 bg-linear-to-t from-black/60 to-transparent transition-opacity duration-300",
               isHovered ? "opacity-100" : "opacity-0",
             )}
           />
@@ -204,7 +204,7 @@ export function RecipeCard({
 
           {/* View Recipe Button */}
           <Link href={`/recipes/${recipe.id}`}>
-            <Button className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 group">
+            <Button className="w-full bg-linear-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 group">
               View Recipe
               <ChefHat className="ml-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
             </Button>
@@ -224,7 +224,7 @@ export function RecipeCard({
     >
       <div className="flex gap-4 p-4">
         {/* Image */}
-        <div className="relative w-48 h-36 rounded-lg overflow-hidden flex-shrink-0">
+        <div className="relative w-48 h-36 rounded-lg overflow-hidden shrink-0">
           <Image
             src={recipe.imageUrl}
             alt={recipe.title}

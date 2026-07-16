@@ -18,163 +18,51 @@ import {
   Loader2,
 } from "lucide-react";
 import { RecipeCard } from "@/components/recipe/RecipeCard";
+import { sampleRecipes } from "@/lib/data";
 
 // Types for our recipe
-interface Recipe {
+export interface Recipe {
   id: string;
   title: string;
   description: string;
   imageUrl: string;
+  videoUrl?: string;
   prepTime: number;
   cookTime: number;
   servings: number;
+  totalTime?: number;
   difficulty: string;
   cuisine: string;
+  author?: {
+    name: string;
+    avatar: string;
+    bio: string;
+  };
   calories?: number;
   protein?: number;
   carbs?: number;
   fat?: number;
   rating: number;
+  reviewCount?: number;
+  ingredients?: any[];
+  instructions?: any[];
+  nutritionalInfo?: any;
+  tips?: string[];
   tags: Array<{ id: string; name: string }>;
+  reviews?: Array<{
+    id: string;
+    userId: string;
+    userName: string;
+    userAvatar: string;
+    date: string;
+    rating: number;
+    comment: string;
+    helpful?: number;
+  }>;
+  relatedRecipes?: any[];
+  equipment?: string[];
   isFavorite?: boolean;
 }
-
-const sampleRecipes: Recipe[] = [
-  {
-    id: "1",
-    title: "Mediterranean Grilled Salmon",
-    description:
-      "Fresh Atlantic salmon with herbs, lemon, and olive oil. A healthy and delicious dinner option perfect for any occasion.",
-    imageUrl: "/api/placeholder/400/300",
-    prepTime: 15,
-    cookTime: 20,
-    servings: 4,
-    difficulty: "Medium",
-    cuisine: "Mediterranean",
-    calories: 450,
-    protein: 35,
-    carbs: 12,
-    fat: 28,
-    rating: 4.8,
-    tags: [
-      { id: "1", name: "Healthy" },
-      { id: "2", name: "High Protein" },
-      { id: "3", name: "Gluten-Free" },
-    ],
-    isFavorite: false,
-  },
-  {
-    id: "2",
-    title: "Vegetarian Buddha Bowl",
-    description:
-      "Nutritious bowl packed with quinoa, roasted vegetables, avocado, and tahini dressing.",
-    imageUrl: "/api/placeholder/400/300",
-    prepTime: 20,
-    cookTime: 25,
-    servings: 2,
-    difficulty: "Easy",
-    cuisine: "Asian Fusion",
-    calories: 380,
-    protein: 15,
-    carbs: 45,
-    fat: 18,
-    rating: 4.6,
-    tags: [
-      { id: "4", name: "Vegetarian" },
-      { id: "5", name: "Vegan" },
-      { id: "6", name: "High Fiber" },
-    ],
-    isFavorite: true,
-  },
-  {
-    id: "3",
-    title: "Classic Italian Margherita Pizza",
-    description:
-      "Authentic Neapolitan pizza with San Marzano tomatoes, fresh mozzarella, and basil.",
-    imageUrl: "/api/placeholder/400/300",
-    prepTime: 30,
-    cookTime: 15,
-    servings: 4,
-    difficulty: "Medium",
-    cuisine: "Italian",
-    calories: 680,
-    protein: 24,
-    carbs: 72,
-    fat: 32,
-    rating: 4.9,
-    tags: [
-      { id: "7", name: "Italian" },
-      { id: "8", name: "Classic" },
-      { id: "9", name: "Family-Friendly" },
-    ],
-  },
-  {
-    id: "4",
-    title: "Thai Green Curry with Chicken",
-    description:
-      "Aromatic and spicy Thai green curry with tender chicken, bamboo shoots, and basil.",
-    imageUrl: "/api/placeholder/400/300",
-    prepTime: 15,
-    cookTime: 30,
-    servings: 4,
-    difficulty: "Medium",
-    cuisine: "Thai",
-    calories: 520,
-    protein: 28,
-    carbs: 35,
-    fat: 30,
-    rating: 4.7,
-    tags: [
-      { id: "10", name: "Asian" },
-      { id: "11", name: "Spicy" },
-      { id: "12", name: "Curry" },
-    ],
-  },
-  {
-    id: "5",
-    title: "Berry Protein Smoothie Bowl",
-    description:
-      "Energizing breakfast bowl with mixed berries, banana, protein powder, and granola.",
-    imageUrl: "/api/placeholder/400/300",
-    prepTime: 10,
-    cookTime: 0,
-    servings: 1,
-    difficulty: "Easy",
-    cuisine: "American",
-    calories: 350,
-    protein: 25,
-    carbs: 48,
-    fat: 8,
-    rating: 4.5,
-    tags: [
-      { id: "13", name: "Breakfast" },
-      { id: "14", name: "Quick" },
-      { id: "15", name: "High Protein" },
-    ],
-  },
-  {
-    id: "6",
-    title: "Beef Tacos with Fresh Salsa",
-    description:
-      "Mexican-style beef tacos with homemade pico de gallo, guacamole, and lime crema.",
-    imageUrl: "/api/placeholder/400/300",
-    prepTime: 20,
-    cookTime: 20,
-    servings: 6,
-    difficulty: "Easy",
-    cuisine: "Mexican",
-    calories: 450,
-    protein: 30,
-    carbs: 38,
-    fat: 22,
-    rating: 4.8,
-    tags: [
-      { id: "16", name: "Mexican" },
-      { id: "17", name: "Family-Friendly" },
-      { id: "18", name: "Quick" },
-    ],
-  },
-];
 
 const cuisines = [
   "All",
@@ -605,50 +493,32 @@ export default function RecipesPage() {
             }
           >
             {recipes.map((recipe) => (
-              <RecipeCard
-                recipe={recipe}
-                // recipe={{
-                //   id: "1",
-                //   title: "Mediterranean Grilled Salmon",
-                //   description: "Fresh Atlantic salmon with herbs...",
-                //   imageUrl: "/api/placeholder/400/300",
-                //   prepTime: 15,
-                //   cookTime: 20,
-                //   servings: 4,
-                //   difficulty: "Medium",
-                //   cuisine: "Mediterranean",
-                //   calories: 450,
-                //   rating: 4.8,
-                //   protein: 35,
-                //   carbs: 12,
-                //   fat: 28,
-                //   tags: [
-                //     { id: "1", name: "Healthy" },
-                //     { id: "2", name: "High Protein" },
-                //   ],
-                // }}
-                // recipe={recipeData}
-                isFavorite={favorites.has(recipe.id)}
-                onToggleFavorite={() => {
-                  setFavorites((prev) => {
-                    const newFavs = new Set(prev);
-                    if (newFavs.has(recipe.id)) {
-                      newFavs.delete(recipe.id);
-                    } else {
-                      newFavs.add(recipe.id);
-                    }
-                    return newFavs;
-                  });
-                }}
-                viewMode={viewMode}
-              />
-              // <RecipeCard
+              <div key={recipe.id}>
+                <RecipeCard
+                  recipe={recipe}
+                  // recipe={recipeData}
+                  isFavorite={favorites.has(recipe.id)}
+                  onToggleFavorite={() => {
+                    setFavorites((prev) => {
+                      const newFavs = new Set(prev);
+                      if (newFavs.has(recipe.id)) {
+                        newFavs.delete(recipe.id);
+                      } else {
+                        newFavs.add(recipe.id);
+                      }
+                      return newFavs;
+                    });
+                  }}
+                  viewMode={viewMode}
+                />
+                {/* // <RecipeCard
               //   key={recipe.id}
               //   recipe={recipe}
               //   isFavorite={favorites.has(recipe.id)}
               //   onToggleFavorite={() => toggleFavorite(recipe.id)}
               //   viewMode={viewMode}
-              // />
+              // /> */}
+              </div>
             ))}
           </div>
         ) : (

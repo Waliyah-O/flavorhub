@@ -1,0 +1,133 @@
+@media print {
+  /* Hide everything except recipe content */
+  body * {
+    visibility: hidden;
+  }
+
+  .print-recipe,
+  .print-recipe * {
+    visibility: visible;
+  }
+
+  .print-recipe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    background: white;
+  }
+
+  /* Hide interactive elements */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Recipe print styling */
+  .print-recipe h1 {
+    font-size: 28pt;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+
+  .print-recipe h2 {
+    font-size: 20pt;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: 5px;
+  }
+
+  .print-recipe .meta-info {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .print-recipe .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .print-recipe .ingredients-list {
+    columns: 2;
+    column-gap: 40px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .print-recipe .ingredients-list li {
+    break-inside: avoid;
+    padding: 3px 0;
+    border-bottom: 1px dotted #e5e5e5;
+  }
+
+  .print-recipe .instructions-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .print-recipe .instructions-list li {
+    break-inside: avoid;
+    margin-bottom: 15px;
+    padding-left: 35px;
+    position: relative;
+  }
+
+  .print-recipe .step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background: #ec4899;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12pt;
+    font-weight: bold;
+  }
+
+  .print-recipe .nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+  }
+
+  .print-recipe .nutrition-item {
+    text-align: center;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  /* Page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Ensure images print well */
+  .print-recipe img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* Header and footer */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  @page :first {
+    margin-top: 2cm;
+  }
+}
