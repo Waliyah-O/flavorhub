@@ -93,7 +93,7 @@ export function RecipeCard({
               "absolute top-2 right-2 z-10 transition-all duration-300",
               isFavorite
                 ? "bg-pink-500 text-white hover:bg-pink-600"
-                : "bg-white/80 hover:bg-white",
+                : "bg-white/10 hover:bg-white/30",
             )}
             onClick={(e) => {
               e.preventDefault();

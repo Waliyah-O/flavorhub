@@ -228,7 +228,7 @@ export default function RecipesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -511,13 +511,6 @@ export default function RecipesPage() {
                   }}
                   viewMode={viewMode}
                 />
-                {/* // <RecipeCard
-              //   key={recipe.id}
-              //   recipe={recipe}
-              //   isFavorite={favorites.has(recipe.id)}
-              //   onToggleFavorite={() => toggleFavorite(recipe.id)}
-              //   viewMode={viewMode}
-              // /> */}
               </div>
             ))}
           </div>
