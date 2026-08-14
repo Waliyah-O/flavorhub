@@ -362,7 +362,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-gradient-to-r from-pink-500 to-rose-500 py-8">
+      <section className="bg-linear-to-r from-pink-500 to-rose-500 py-8">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -390,7 +390,7 @@ export default function HomePage() {
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Everything You Need to{" "}
-              <span className="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
                 Master Cooking
               </span>
             </h2>
@@ -405,9 +405,9 @@ export default function HomePage() {
                 key={index}
                 className="p-6 hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${feature.color}" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${feature.color}" />
                 <div
-                  className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform`}
+                  className={`w-14 h-14 rounded-xl bg-linear-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform`}
                 >
                   <feature.icon className="h-7 w-7 text-white" />
                 </div>
@@ -447,9 +447,9 @@ export default function HomePage() {
                 key={index}
               >
                 <Card className="p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300 ${category.color}" />
+                  <div className="absolute inset-0 bg-linear-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300 ${category.color}" />
                   <div
-                    className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform`}
+                    className={`w-16 h-16 mx-auto rounded-2xl bg-linear-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform`}
                   >
                     <category.icon className="h-8 w-8 text-white" />
                   </div>
@@ -513,7 +513,7 @@ export default function HomePage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   /> */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   {/* Badges */}
                   <div className="absolute top-3 left-3 flex gap-2">
@@ -615,7 +615,7 @@ export default function HomePage() {
                   </div>
 
                   <Link href={`/recipes/${recipe.id}`}>
-                    <Button className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 group/button">
+                    <Button className="w-full bg-linear-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 group/button">
                       View Recipe
                       <ArrowRight className="ml-2 h-4 w-4 group-hover/button:translate-x-1 transition-transform" />
                     </Button>
@@ -637,7 +637,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <section className="py-20 bg-linear-to-br from-pink-50 to-rose-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
           <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
@@ -682,7 +682,7 @@ export default function HomePage() {
             ].map((step, index) => (
               <div key={index} className="text-center group relative">
                 <div className="relative inline-block">
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-linear-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform">
                     {step.step}
                   </div>
                   <div className="absolute inset-0 rounded-full border-2 border-dashed border-pink-500 animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -769,7 +769,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 relative overflow-hidden">
+      <section className="py-20 bg-linear-to-r from-pink-500 via-rose-500 to-purple-500 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
@@ -814,7 +814,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-rose-500">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-pink-500 to-rose-500">
                   <Utensils className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-2xl font-bold">FlavorHub</span>
@@ -1218,7 +1218,7 @@ export default function HomePage() {
 //           <div className="text-center max-w-3xl mx-auto mb-16">
 //             <h2 className="text-3xl md:text-4xl font-bold mb-4">
 //               Everything You Need to
-//               <span className="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
+//               <span className="bg-linear-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
 //                 {" "}
 //                 Master Cooking
 //               </span>
@@ -1235,7 +1235,7 @@ export default function HomePage() {
 //                 className="p-6 hover:shadow-xl transition-all duration-300 group"
 //               >
 //                 <div
-//                   className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+//                   className={`w-14 h-14 rounded-xl bg-linear-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
 //                 >
 //                   <feature.icon className="h-7 w-7 text-white" />
 //                 </div>
@@ -1269,7 +1269,7 @@ export default function HomePage() {
 //               >
 //                 <Card className="p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer text-center">
 //                   <div
-//                     className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+//                     className={`w-16 h-16 mx-auto rounded-2xl bg-linear-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
 //                   >
 //                     <category.icon className="h-8 w-8 text-white" />
 //                   </div>
@@ -1375,7 +1375,7 @@ export default function HomePage() {
 //                   </div>
 
 //                   <Link href={`/recipes/${recipe.id}`}>
-//                     <Button className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600">
+//                     <Button className="w-full bg-linear-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600">
 //                       View Recipe
 //                     </Button>
 //                   </Link>
@@ -1432,7 +1432,7 @@ export default function HomePage() {
 //               },
 //             ].map((step, index) => (
 //               <div key={index} className="text-center">
-//                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white text-2xl font-bold">
+//                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-linear-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white text-2xl font-bold">
 //                   {step.step}
 //                 </div>
 //                 <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
@@ -1472,7 +1472,7 @@ export default function HomePage() {
 //                   "{testimonial.content}"
 //                 </p>
 //                 <div className="flex items-center gap-3">
-//                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-rose-400" />
+//                   <div className="w-10 h-10 rounded-full bg-linear-to-br from-pink-400 to-rose-400" />
 //                   <div>
 //                     <p className="font-semibold">{testimonial.name}</p>
 //                     <p className="text-sm text-gray-500">{testimonial.role}</p>
@@ -1521,7 +1521,7 @@ export default function HomePage() {
 //           <div className="grid md:grid-cols-4 gap-8 mb-8">
 //             <div>
 //               <div className="flex items-center space-x-2 mb-4">
-//                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-rose-500">
+//                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-pink-500 to-rose-500">
 //                   <Utensils className="h-5 w-5 text-white" />
 //                 </div>
 //                 <span className="text-xl font-bold">FlavorHub</span>

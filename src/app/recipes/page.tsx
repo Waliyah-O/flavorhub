@@ -318,12 +318,12 @@ export default function RecipesPage() {
   const hasActiveFilters = activeFilters.length > 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-linear-to-br from-pink-500 to-rose-500 flex items-center justify-center">
               <UtensilsCrossed className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -466,7 +466,7 @@ export default function RecipesPage() {
                 className={cn(
                   "cursor-pointer px-4 py-2 transition-all duration-300 hover:scale-105",
                   selectedCuisine === cuisine.name
-                    ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg"
+                    ? "bg-linear-to-r from-pink-500 to-rose-500 text-white shadow-lg"
                     : "hover:border-pink-300 hover:text-pink-500",
                 )}
                 onClick={() =>
@@ -574,7 +574,7 @@ export default function RecipesPage() {
                         className={cn(
                           "cursor-pointer transition-all duration-300",
                           selectedDifficulty === difficulty.name &&
-                            "bg-gradient-to-r from-pink-500 to-rose-500",
+                            "bg-linear-to-r from-pink-500 to-rose-500",
                         )}
                         onClick={() =>
                           setSelectedDifficulty(
@@ -655,7 +655,7 @@ export default function RecipesPage() {
         </div>
 
         {/* AI Suggestion Banner */}
-        <Card className="p-6 mb-8 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white relative overflow-hidden group">
+        <Card className="p-6 mb-8 bg-linear-to-r from-pink-500 via-rose-500 to-purple-500 text-white relative overflow-hidden group">
           <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           <div className="relative flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -1207,7 +1207,7 @@ export default function RecipesPage() {
 //         </div>
 
 //         {/* AI Suggestion Banner */}
-//         <Card className="p-6 mb-8 bg-gradient-to-r from-pink-500 to-rose-500 text-white">
+//         <Card className="p-6 mb-8 bg-linear-to-r from-pink-500 to-rose-500 text-white">
 //           <div className="flex items-center justify-between">
 //             <div>
 //               <h3 className="text-xl font-bold mb-1">Not sure what to cook?</h3>
