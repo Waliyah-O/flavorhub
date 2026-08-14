@@ -1,5 +1,6 @@
 import { RecipeDetail } from "@/app/recipes/[id]/page";
 import { Recipe } from "@/app/recipes/page";
+import { recipeImages } from "@/data/images";
 
 export const sampleRecipe: RecipeDetail = {
   id: "1",
@@ -266,7 +267,8 @@ export const sampleRecipes: Recipe[] = [
     title: "Mediterranean Grilled Salmon",
     description:
       "Fresh Atlantic salmon with herbs, lemon, and olive oil. A healthy and delicious dinner option perfect for any occasion.",
-    imageUrl: "/api/placeholder/400/300",
+    imageUrl: recipeImages.mediterraneanGrilledSalmon.url,
+    // imageUrl: "/api/placeholder/400/300",
     prepTime: 15,
     cookTime: 20,
     servings: 4,
@@ -289,7 +291,7 @@ export const sampleRecipes: Recipe[] = [
     title: "Vegetarian Buddha Bowl",
     description:
       "Nutritious bowl packed with quinoa, roasted vegetables, avocado, and tahini dressing.",
-    imageUrl: "/api/placeholder/400/300",
+    imageUrl: recipeImages.vegetarianBuddhaBowl.url,
     prepTime: 20,
     cookTime: 25,
     servings: 2,
@@ -312,7 +314,7 @@ export const sampleRecipes: Recipe[] = [
     title: "Classic Italian Margherita Pizza",
     description:
       "Authentic Neapolitan pizza with San Marzano tomatoes, fresh mozzarella, and basil.",
-    imageUrl: "/api/placeholder/400/300",
+    imageUrl: recipeImages.classicItalianMargheritaPizza.url,
     prepTime: 30,
     cookTime: 15,
     servings: 4,
@@ -334,7 +336,7 @@ export const sampleRecipes: Recipe[] = [
     title: "Thai Green Curry with Chicken",
     description:
       "Aromatic and spicy Thai green curry with tender chicken, bamboo shoots, and basil.",
-    imageUrl: "/api/placeholder/400/300",
+    imageUrl: recipeImages.thaiGreenCurryWithChicken.url,
     prepTime: 15,
     cookTime: 30,
     servings: 4,
@@ -356,7 +358,7 @@ export const sampleRecipes: Recipe[] = [
     title: "Berry Protein Smoothie Bowl",
     description:
       "Energizing breakfast bowl with mixed berries, banana, protein powder, and granola.",
-    imageUrl: "/api/placeholder/400/300",
+    imageUrl: recipeImages.berryProteinSmoothieBowl.url,
     prepTime: 10,
     cookTime: 0,
     servings: 1,
@@ -378,7 +380,7 @@ export const sampleRecipes: Recipe[] = [
     title: "Beef Tacos with Fresh Salsa",
     description:
       "Mexican-style beef tacos with homemade pico de gallo, guacamole, and lime crema.",
-    imageUrl: "/api/placeholder/400/300",
+    imageUrl: recipeImages.beefTacosWithFreshSalsa.url,
     prepTime: 20,
     cookTime: 20,
     servings: 6,

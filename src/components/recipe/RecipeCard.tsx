@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { RecipeImage } from "./recipe-image";
 
 interface RecipeCardProps {
   recipe: {
@@ -67,7 +68,14 @@ export function RecipeCard({
       >
         {/* Image Section */}
         <div className="relative h-48 overflow-hidden">
-          <Image
+          <RecipeImage
+            src={recipe.imageUrl}
+            alt={recipe.title}
+            fill
+            className="group-hover:scale-110 transition-transform duration-300"
+          />
+
+          {/* <Image
             src={recipe.imageUrl}
             alt={recipe.title}
             fill
@@ -75,7 +83,7 @@ export function RecipeCard({
               "object-cover transition-transform duration-500",
               isHovered && "scale-110",
             )}
-          />
+          /> */}
 
           {/* Overlay on hover */}
           <div
@@ -225,12 +233,19 @@ export function RecipeCard({
       <div className="flex gap-4 p-4">
         {/* Image */}
         <div className="relative w-48 h-36 rounded-lg overflow-hidden shrink-0">
-          <Image
+          <RecipeImage
+            src={recipe.imageUrl}
+            alt={recipe.title}
+            fill
+            className="group-hover:scale-110 transition-transform duration-300"
+          />
+
+          {/* <Image
             src={recipe.imageUrl}
             alt={recipe.title}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-300"
-          />
+          /> */}
           <Badge className="absolute top-2 left-2 bg-white/90 text-gray-800 text-xs">
             {recipe.cuisine}
           </Badge>

@@ -42,6 +42,7 @@ import {
 import { cn } from "@/lib/utils";
 import { PrintRecipe } from "../print-recipe";
 import { sampleRecipe, sampleRecipeDetails } from "@/lib/data";
+import { RecipeImage } from "@/components/recipe/recipe-image";
 
 // Types
 interface Ingredient {
@@ -438,14 +439,21 @@ export default function RecipeDetailPage() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative h-96 bg-gradient-to-b from-gray-900 to-gray-700">
-        <Image
+      <div className="relative h-96 bg-linear-to-b from-gray-900 to-gray-700">
+        <RecipeImage
           src={recipe.imageUrl}
           alt={recipe.title}
           fill
           className="object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+
+        {/* <Image
+          src={recipe.imageUrl}
+          alt={recipe.title}
+          fill
+          className="object-cover opacity-50"
+        /> */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="container mx-auto">
             <div className="flex flex-wrap gap-2 mb-3">
